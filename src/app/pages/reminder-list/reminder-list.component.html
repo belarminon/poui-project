@@ -1,0 +1,47 @@
+<po-page-default p-title="Lista de Lembretes">
+
+    <po-button p-label="Adicionar Lembrete" (p-click)="openQuestionnaire()">
+    </po-button>
+    <br>
+
+    <!-- <po-page-dynamic-table p-title="Po Page Dynamic Table" [p-actions]="{ remove: true }" [p-fields]="fields"
+        >
+    </po-page-dynamic-table> -->
+
+    <po-table 
+        [p-actions-right]="true" 
+        [p-actions]="actions" 
+        p-container="light" 
+        [p-columns]="columnsTable" 
+        [p-items]="reminderList"
+     >
+    </po-table>
+
+</po-page-default>
+
+<po-modal p-title="Cadastro de Lembrete" [p-primary-action]="confirm" [p-secondary-action]="close">
+    <form #optionsForm="ngForm">
+        <div class="po-row">
+            <po-input p-label="Título:" name="title" p-pattern="string" p-placeholder="Título do Lembrete." p-required>
+            </po-input>
+        </div>
+
+        <div class="po-row">
+            <po-combo class="po-md-12" (ngModel)="reminderForm" name="reminderPriority" p-label="Prioridade:"
+                [p-options]="reminderOptions">
+            </po-combo>
+        </div>
+
+        <div class="po-row">
+            <po-textarea class="po-md-12" name="reminderDescription" [(ngModel)]="reminderDescription"
+                p-label="Descrição:" p-placeholder="Descrição do Lembrete.">
+            </po-textarea>
+        </div>
+    </form>
+    <po-modal-footer [p-disabled-align]="false">
+        <po-button p-kind="primary" p-label="Salvar" (p-click)="insertReminder()"> </po-button>
+        <po-button p-kind="secundary" p-label="Cancelar" (p-click)="closeModal()"> </po-button>
+    </po-modal-footer>
+</po-modal>
+
+<!-- [p-service-api]="url" -->

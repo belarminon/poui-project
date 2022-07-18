@@ -1,0 +1,52 @@
+{
+  "users": [
+    {
+      "email": "admin@mixmo.com.br",
+      "password": "admin"
+    },
+    {
+      "email": "support@mixmo.com.br",
+      "password": "support"
+    }
+  ],
+  "tasks": [
+    {
+      "id": 1,
+      "priorityId": 1,
+      "title": "Hello, world",
+      "description": "Mockey utilizando o my-sjon-server"
+    },
+    {
+      "priorityId": 1,
+      "title": "Belarmino 02",
+      "description": "Mockey 03 utilizando o json-server",
+      "id": 2
+    },
+    {
+      "priorityId": 3,
+      "title": "Belarmino 03",
+      "description": "Mockey 03 utilizando o json-server",
+      "id": 3
+    },
+    {
+      "priorityId": 2,
+      "title": "Belarmino 04",
+      "description": "Mockey 04 utilizando o json-server",
+      "id": 4
+    }
+  ],
+  "priority": [
+    {
+      "priorityId": 1,
+      "description": "Baixa"
+    },
+    {
+      "priorityId": 2,
+      "description": "Média"
+    },
+    {
+      "priorityId": 3,
+      "description": "Alta"
+    }
+  ]
+}

@@ -104,10 +104,12 @@ export class ReminderListComponent implements OnInit {
 
   //Metódo que se inscreve no serviço e atualiza a lista de lembretes
   onLoadReminder() {
-    this.service.getReminder().subscribe(response => {
-      this.reminderList = response;
-      console.log(this.reminderList)
-    })
+    this.service.getReminder().subscribe(
+      response => {
+        this.reminderList = response;
+        console.log(this.reminderList)
+      }
+    )
   }
 
   closeModal() {

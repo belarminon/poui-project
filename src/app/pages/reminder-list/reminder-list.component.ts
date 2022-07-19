@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { ReminderService } from './../../services/reminder.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, NgForm, FormGroup } from '@angular/forms';
+import { FormBuilder, NgForm, FormGroup, FormControl } from '@angular/forms';
 import { PoComboOption, PoModalAction, PoModalComponent, PoNotificationService, PoRadioGroupOption, PoTableAction } from '@po-ui/ng-components';
 import { Reminder } from '../reminder-add/reminder-model';
 import { first } from 'rxjs';
@@ -15,6 +15,8 @@ import { PoPageDynamicTableFilters } from '@po-ui/ng-templates';
 export class ReminderListComponent implements OnInit {
   @ViewChild('optionsForm', { static: true }) form!: NgForm;
   @ViewChild(PoModalComponent, { static: true }) poModal!: PoModalComponent;
+
+  formReminder!: FormGroup;
 
   //#region Reminder List
   reminderList: Array<any> = new Array();
@@ -31,11 +33,6 @@ export class ReminderListComponent implements OnInit {
     { action: this.updateReminder.bind(this), icon: 'po-icon-edit', label: 'Alterar Lembrete' },
     { action: this.deleteReminder.bind(this), icon: 'po-icon-delete', label: 'Excluir Lembrete' }
   ];
-
-  // actions: PoPageDynamicTableAction  = {
-  //   { new: this.updateReminder.bind(this), icon: 'po-icon-edit', label: 'Alterar Lembrete' },
-  //   { action: this.deleteReminder.bind(this), icon: 'po-icon-delete', label: 'Excluir Lembrete' }
-  // };
 
   fields: Array<PoPageDynamicTableFilters> = [
     { property: 'id', key: true, label: 'ID' },
@@ -94,12 +91,21 @@ export class ReminderListComponent implements OnInit {
   constructor(
     private service: ReminderService,
     private router: Router,
-    private poNotification: PoNotificationService
+    private poNotification: PoNotificationService,
+    private fb: FormBuilder
   ) { }
 
   ngOnInit(): void {
     this.onLoadReminder()
     this.columnsTable = this.service.getReminderColumns();
+
+    this.formReminder = this.fb.group(
+      {
+        title: new FormControl(""),
+        priority: new FormControl(""),
+        description: new FormControl("")
+      }
+    )
   }
 
   //Metódo que se inscreve no serviço e atualiza a lista de lembretes
@@ -138,8 +144,14 @@ export class ReminderListComponent implements OnInit {
 
   insert() {
     console.log('Inserted Method')
+    const obj = {
+      titleObj: this.formReminder.get('title')?.value,
+      priorityObj: this.formReminder.get('priority')?.value,
+      descriptionObj: this.formReminder.get('description')?.value
+    }
     this.getReminder();
-    this.service.postReminder(JSON.stringify(this.reminder))
+    // this.service.postReminder(JSON.stringify(this.reminder))
+    this.service.postReminder(obj)
       .pipe(first())
       .subscribe(
         {
@@ -158,6 +170,7 @@ export class ReminderListComponent implements OnInit {
         }
       );
   }
+
   getReminder() {
     this.reminder.id = this.reminderValues.id;
     this.reminder.title = this.reminderValues.title;

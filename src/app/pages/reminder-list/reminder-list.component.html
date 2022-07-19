@@ -4,8 +4,7 @@
     </po-button>
     <br>
 
-    <!-- <po-page-dynamic-table p-title="Po Page Dynamic Table" [p-actions]="{ remove: true }" [p-fields]="fields"
-        >
+    <!-- <po-page-dynamic-table p-title="Lembretes" [p-fields]="fields" [p-service-api]="http://localhost:3000/tasks">
     </po-page-dynamic-table> -->
 
     <po-table 
@@ -27,13 +26,13 @@
         </div>
 
         <div class="po-row">
-            <po-combo class="po-md-12" (ngModel)="reminderForm" name="reminderPriority" p-label="Prioridade:"
+            <po-combo class="po-md-12" (ngModel)="reminderForm" name="priority" p-label="Prioridade:"
                 [p-options]="reminderOptions">
             </po-combo>
         </div>
 
         <div class="po-row">
-            <po-textarea class="po-md-12" name="reminderDescription" [(ngModel)]="reminderDescription"
+            <po-textarea class="po-md-12" name="description" [(ngModel)]="reminderDescription"
                 p-label="Descrição:" p-placeholder="Descrição do Lembrete.">
             </po-textarea>
         </div>
@@ -43,5 +42,3 @@
         <po-button p-kind="secundary" p-label="Cancelar" (p-click)="closeModal()"> </po-button>
     </po-modal-footer>
 </po-modal>
-
-<!-- [p-service-api]="url" -->

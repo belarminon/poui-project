@@ -11,25 +11,25 @@
   ],
   "tasks": [
     {
-      "id": 1,
-      "priorityId": 1,
+      "priorityId": "Baixa",
       "title": "Hello, world",
-      "description": "Mockey utilizando o my-sjon-server"
+      "description": "Mockey utilizando o my-sjon-server",
+      "id": 1
     },
     {
-      "priorityId": 1,
+      "priorityId": "Baixa",
       "title": "Belarmino 02",
       "description": "Mockey 03 utilizando o json-server",
       "id": 2
     },
     {
-      "priorityId": 3,
+      "priorityId": "Alta",
       "title": "Belarmino 03",
       "description": "Mockey 03 utilizando o json-server",
       "id": 3
     },
     {
-      "priorityId": 2,
+      "priorityId": "Média",
       "title": "Belarmino 04",
       "description": "Mockey 04 utilizando o json-server",
       "id": 4

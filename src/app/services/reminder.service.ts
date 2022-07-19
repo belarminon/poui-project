@@ -47,7 +47,7 @@ export class ReminderService {
     return this.http.get<Reminder>(`${this.url}/tasks/${reminderId}`);
   }
   //Método para inserir Lembrete
-  postReminder(body: string) {
+  postReminder(body: any) {
     return this.http.post(this.url, body)
   }
   //Método para remover Lembretes
